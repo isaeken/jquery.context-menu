@@ -1,7 +1,7 @@
 {
-  "name": "context-menu",
+  "name": "@isaeken/jquery.context-menu",
   "version": "1.0.0",
-  "description": "",
+  "description": "jQuery based context menus be like Material Design.",
   "main": "src/js/jquery.context-menu.js",
   "directories": {
     "example": "examples"
@@ -20,7 +20,8 @@
   "keywords": [
     "jquery",
     "context",
-    "menu"
+    "menu",
+    "material"
   ],
   "author": "İsa Eken",
   "license": "MIT",
