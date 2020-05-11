@@ -1,0 +1,212 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>jquery.context-menu</title>
+
+    <script src="../dist/jquery.min.js"></script>
+    <script src="../dist/jquery.context-menu.min.js"></script>
+    <link rel="stylesheet" href="../dist/jquery.context-menu.min.css">
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
+    <style type="text/css">
+        .container {
+            width: 100%;
+            max-width: 600px;
+            min-height: 300px;
+            margin: auto;
+        }
+        .test-area {
+            width: 100%;
+            line-height: 80px;
+            text-align: center;
+            border: 1px solid black;
+            margin-bottom: 12pt;
+            font-size: 22pt;
+        }
+        footer {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container" id="test1">
+        <h1>
+            jQuery Context Menu
+        </h1>
+        <h2>
+            Examples
+        </h2>
+
+        <div class="test-area context-menu-trigger">
+            <ul class="context-menu-content">
+                <li>
+                    <a href="https://www.isaeken.com.tr">
+                        This is a link!
+                    </a>
+                </li>
+                <li>
+                    <a onclick="alert('Testing...')">
+                        JavaScript!
+                    </a>
+                </li>
+            </ul>
+            Left click here
+        </div>
+
+        <div class="test-area context-menu-trigger context-menu-button-middle">
+            <ul class="context-menu-content">
+                <li>
+                    <a href="#">
+                        <span class="material-icons">
+                            accessibility_new
+                        </span>
+                        Item with Material Icon!
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <span class="material-icons">
+                            warning
+                        </span>
+                        Item with Material Icon!
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="fab fa-github-alt"></i>
+                        Item with Font Awesome!
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="fab fa-npm"></i>
+                        Item with Font Awesome!
+                    </a>
+                </li>
+            </ul>
+            Middle click here
+        </div>
+        <div class="test-area context-menu-trigger context-menu-button-right">
+            <ul class="context-menu-content">
+                <li>
+                    <a href="#">
+                        This is sooooooooooooo long text!
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        🤗💕❤😎😁👌😂
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        ╰(*°▽°*)╯
+                    </a>
+                </li>
+            </ul>
+            Right click here
+        </div>
+
+        <hr>
+
+        <h3 style="text-align: center">Advanced</h3>
+
+        <div class="test-area" id="advanced-context-menu">
+            Advanced Context Menu
+        </div>
+        <div class="test-area" id="many-items">
+            So many items..
+        </div>
+        <pre id="log"></pre>
+    </div>
+    <footer class="container">
+        <p>
+            developed by <a href="https://www.isaeken.com.tr" target="_blank">İsa Eken</a>
+        </p>
+    </footer>
+    <br><br><br><br><br><br><br><br><br><br>
+    <script type="application/javascript">
+        $(document).ready(function () {
+
+            // create context menu
+            var contextMenu = $('#advanced-context-menu').contextMenu();
+
+            // set context menu button
+            contextMenu.button = mouseButton.LEFT;
+
+            /////////////////////////////////////////////////////////////////////////////////
+
+            // add first item
+            contextMenu.menu().addItem('This is <b>first</b> item!');
+
+            // add second item with a link
+            contextMenu.menu().addItem('<b>Item</b> content', 'https://www.isaeken.com.tr');
+
+            // add third item with function
+            contextMenu.menu().addItem('This is <u>Third</u> item', function () {
+                alert('Hello world!');
+            });
+
+            // add items with icon
+            contextMenu.menu().addItem('<span class="material-icons">bookmark</span>Item with Material Icon');
+            contextMenu.menu().addItem('<i class="fab fa-npm"></i>Item with Font Awesome');
+
+            // removing an item
+            contextMenu.menu().addItem('Click to delete me!', function () {
+                contextMenu.menu().removeItem(5);
+            });
+
+            // changing trigger button
+
+            contextMenu.menu().addItem('Change trigger: <b>Mouse LEFT</b>', function () {
+                contextMenu.button = mouseButton.LEFT;
+                contextMenu.update();
+            });
+
+            contextMenu.menu().addItem('Change trigger: <b>Mouse MIDDLE</b>', function () {
+                contextMenu.button = mouseButton.MIDDLE;
+                contextMenu.update();
+            });
+
+            contextMenu.menu().addItem('Change trigger: <b>Mouse RIGHT</b>', function () {
+                contextMenu.button = mouseButton.RIGHT;
+                contextMenu.update();
+            });
+
+            // events
+
+            // onclick
+            contextMenu.menu().addItem('onclick event', function () {
+                contextMenu.onclick = function () {
+                    $('#log').append('You are clicked!<br>');
+                    this.close();
+                }
+            });
+
+            // onopen
+            contextMenu.menu().addItem('onopen event', function () {
+                contextMenu.onopen = function () {
+                    $('#log').append('Context menu opened!<br>');
+                }
+            });
+
+            /////////////////////////////////////////////////////////////////////////////////
+
+            // generate context menu
+            contextMenu.init();
+        });
+
+        $(document).ready(function () {
+            var contextMenu = $('#many-items').contextMenu();
+            contextMenu.button = mouseButton.LEFT;
+            for (var i = 1; i < 101; i++) {
+                contextMenu.menu().addItem('Item ' + i);
+            }
+            // contextMenu.onclick = function () { };
+            contextMenu.init();
+        });
+    </script>
+</body>
+</html>

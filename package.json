@@ -1,0 +1,31 @@
+{
+  "name": "context-menu",
+  "version": "1.0.0",
+  "description": "",
+  "main": "src/js/jquery.context-menu.js",
+  "directories": {
+    "example": "examples"
+  },
+  "dependencies": {
+    "jquery": "^3.5.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/isaeken/jquery.context-menu.git"
+  },
+  "keywords": [
+    "jquery",
+    "context",
+    "menu"
+  ],
+  "author": "İsa Eken",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/isaeken/jquery.context-menu/issues"
+  },
+  "homepage": "https://github.com/isaeken/jquery.context-menu#readme"
+}
